@@ -10,12 +10,37 @@ const BASE_URL = 'http://api.weatherapi.com/v1';
 const CURRENT_URL = `${BASE_URL}/current.json`;
 const FORECAST_URL = `${BASE_URL}/forecast.json`;
 
+// Function to determine background weather condition based on WeatherAPI condition code
+const getWeatherCondition = (conditionCode) => {
+  // Clear/Sunny conditions
+  if (conditionCode === 1000) return 'sunny';
+  
+  // Cloudy conditions
+  if ([1003, 1006, 1009].includes(conditionCode)) return 'cloudy';
+  
+  // Rainy conditions
+  if ([1063, 1072, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243, 1246].includes(conditionCode)) return 'rainy';
+  
+  // Snowy conditions
+  if ([1066, 1069, 1114, 1117, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264].includes(conditionCode)) return 'snowy';
+  
+  // Thunderstorm conditions
+  if ([1087, 1273, 1276, 1279, 1282].includes(conditionCode)) return 'thunderstorm';
+  
+  // Foggy/Misty conditions
+  if ([1030, 1135, 1147].includes(conditionCode)) return 'foggy';
+  
+  // Default to clear
+  return 'clear';
+};
+
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [city, setCity] = useState('');
   const [locationLoading, setLocationLoading] = useState(false);
+  const [weatherCondition, setWeatherCondition] = useState('clear');
 
   // Fetch weather data for coordinates (latitude, longitude)
   const fetchWeatherByCoordinates = useCallback(async (lat, lon) => {
@@ -45,6 +70,7 @@ function App() {
       
       setWeatherData(combinedData);
       setCity(`${currentData.location.name}, ${currentData.location.country}`);
+      setWeatherCondition(getWeatherCondition(currentData.current.condition.code));
     } catch (err) {
       setError(err.message);
       setWeatherData(null);
@@ -132,6 +158,7 @@ function App() {
       
       setWeatherData(combinedData);
       setCity(cityName);
+      setWeatherCondition(getWeatherCondition(currentData.current.condition.code));
     } catch (err) {
       setError(err.message);
       setWeatherData(null);
@@ -146,7 +173,52 @@ function App() {
   }, [getCurrentLocationWeather]);
 
   return (
-    <div className="App">
+    <div className={`App ${weatherCondition}`}>
+      <div className="weather-background">
+        {weatherCondition === 'sunny' && <div className="sun"></div>}
+        {weatherCondition === 'cloudy' && (
+          <div className="clouds">
+            <div className="cloud cloud-1"></div>
+            <div className="cloud cloud-2"></div>
+            <div className="cloud cloud-3"></div>
+          </div>
+        )}
+        {weatherCondition === 'rainy' && (
+          <>
+            <div className="clouds">
+              <div className="cloud cloud-1"></div>
+              <div className="cloud cloud-2"></div>
+              <div className="cloud cloud-3"></div>
+            </div>
+            <div className="rain">
+              {[...Array(100)].map((_, i) => (
+                <div key={i} className="raindrop" style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${0.3 + Math.random() * 0.4}s`
+                }}></div>
+              ))}
+            </div>
+          </>
+        )}
+        {weatherCondition === 'snowy' && (
+          <div className="snow">
+            {[...Array(50)].map((_, i) => (
+              <div key={i} className="snowflake" style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}>❄</div>
+            ))}
+          </div>
+        )}
+        {weatherCondition === 'thunderstorm' && (
+          <div className="thunderstorm">
+            <div className="lightning"></div>
+          </div>
+        )}
+      </div>
+      
       <div className="container">
         <header className="app-header">
           <h1>🌤️ Live Weather App</h1>

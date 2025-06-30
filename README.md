@@ -12,6 +12,18 @@ A beautiful and responsive React weather application that provides real-time wea
 - 📱 **Responsive Design**: Works perfectly on desktop and mobile devices
 - ⚡ **Enhanced API**: Uses WeatherAPI for comprehensive weather data
 - 🎨 **Modern UI**: Beautiful glassmorphism design with smooth animations
+- 🌈 **Dynamic Backgrounds**: 
+  - ☀️ **Sunny**: Glowing sun animation from corner
+  - ☁️ **Cloudy**: Floating clouds with realistic movement
+  - 🌧️ **Rainy**: Dark storm clouds with animated raindrops and subtle lightning effects
+  - ❄️ **Snowy**: Falling snowflakes with gentle animation
+  - ⛈️ **Thunderstorm**: Dark stormy atmosphere
+  - 🌫️ **Foggy**: Misty atmospheric effects
+  - ☀️ Glowing sun animation for sunny weather
+  - ☁️ Floating clouds for cloudy conditions  
+  - 🌧️ Animated raindrops for rainy weather
+  - ❄️ Falling snowflakes for snowy conditions
+  - ⚡ Lightning effects for thunderstorms
 - ⏱️ **Loading States**: Visual feedback during data fetching
 - 🔒 **Privacy Focused**: Location access is optional and only used when requested
 
@@ -21,7 +33,7 @@ A beautiful and responsive React weather application that provides real-time wea
 - **React Hooks** - useState, useEffect, useCallback for state management
 - **Geolocation API** - Browser's built-in location detection
 - **Async/Await** - For handling API calls and Promise.all for parallel requests
-- **CSS3** - Modern styling with glassmorphism effects
+- **CSS3** - Modern styling with glassmorphism effects and CSS animations
 - **WeatherAPI** - Comprehensive weather data source with current and forecast data
 
 ## Concepts Demonstrated
@@ -32,6 +44,7 @@ A beautiful and responsive React weather application that provides real-time wea
 - ✅ **Async/Await** - Asynchronous JavaScript programming
 - ✅ **State Management** - Managing component state with React hooks
 - ✅ **Error Handling** - Proper error handling for API failures
+- ✅ **CSS Animations** - Dynamic background animations based on weather conditions
 - ✅ **Responsive Design** - Mobile-first approach
 
 ## Setup Instructions
