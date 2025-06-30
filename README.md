@@ -1,28 +1,32 @@
 # Live Weather App 🌤️
 
-A beautiful and responsive React weather application that provides real-time weather information for any city using the OpenWeather API.
+A beautiful and responsive React weather application that provides real-time weather information for any city or your current location using WeatherAPI.
 
 ## Features
 
 - 🔍 **City Search**: Input any city name to get weather information
+- 📍 **Auto Location**: Automatically detect and display weather for your current location
 - 🌡️ **Current Weather**: Real-time temperature, humidity, wind speed, pressure, and visibility
 - ⏰ **Hourly Forecast**: Next 24 hours weather prediction
 - 📅 **7-Day Forecast**: Weekly weather outlook
 - 📱 **Responsive Design**: Works perfectly on desktop and mobile devices
-- ⚡ **Enhanced API**: Uses OpenWeather One Call API 3.0 for comprehensive data
+- ⚡ **Enhanced API**: Uses WeatherAPI for comprehensive weather data
 - 🎨 **Modern UI**: Beautiful glassmorphism design with smooth animations
 - ⏱️ **Loading States**: Visual feedback during data fetching
+- 🔒 **Privacy Focused**: Location access is optional and only used when requested
 
 ## Technologies Used
 
 - **React 18** - Frontend framework
-- **React Hooks** - useState, useEffect for state management
-- **Async/Await** - For handling API calls
+- **React Hooks** - useState, useEffect, useCallback for state management
+- **Geolocation API** - Browser's built-in location detection
+- **Async/Await** - For handling API calls and Promise.all for parallel requests
 - **CSS3** - Modern styling with glassmorphism effects
 - **WeatherAPI** - Comprehensive weather data source with current and forecast data
 
 ## Concepts Demonstrated
 
+- ✅ **Geolocation Integration** - Using browser's Geolocation API
 - ✅ **API Integration** - Fetching data from external REST API
 - ✅ **React useEffect** - Side effects and component lifecycle
 - ✅ **Async/Await** - Asynchronous JavaScript programming
